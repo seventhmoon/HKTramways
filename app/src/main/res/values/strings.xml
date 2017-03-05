@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HK Tramways</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_basic">BasicActivity</string>
+</resources>
