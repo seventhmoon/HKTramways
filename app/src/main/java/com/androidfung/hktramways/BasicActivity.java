@@ -19,12 +19,10 @@ import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class BasicActivity extends AppCompatActivity {
     private final String TAG = BasicActivity.class.getSimpleName();
-    private final String API_BASE_URL = "https://www.hktramways.com/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +35,6 @@ public class BasicActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sendRequest();
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
         sendRequest();
@@ -48,25 +44,18 @@ public class BasicActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor()).build();
 
-
         TramwaysService tramwaysService = ApiManager.getTramwaysService(client);
-
-//        try {
-        Call<Eta> call = tramwaysService.getEtaList("KTT");
+        Call<Eta> call = tramwaysService.getEtaList(TramwaysService.STOP_EAST_KTT);
         call.enqueue(new Callback<Eta>() {
             @Override
             public void onResponse(Call<Eta> call, Response<Eta> response) {
-//                Log.d(TAG, call.toString());
-                Log.d(TAG, response.toString());
                 List<Metadata> etas = response.body().getMetadata();
-
                 ((TextView) findViewById(com.androidfung.hktramways.app.R.id.text_view)).setText(etas==null?"No Info":etas.toString());
             }
 
             @Override
             public void onFailure(Call<Eta> call, Throwable t) {
                 Log.d(TAG, t.toString());
-
             }
         });
 
