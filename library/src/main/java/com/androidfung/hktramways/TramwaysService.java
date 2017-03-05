@@ -3,14 +3,11 @@ package com.androidfung.hktramways;
 import android.support.annotation.StringDef;
 
 import com.androidfung.hktramways.model.Eta;
-import com.androidfung.hktramways.model.Metadata;
 
 import java.lang.annotation.Retention;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
@@ -287,6 +284,4 @@ public interface TramwaysService {
     @GET("nextTram/geteat.php")
     Call<Eta> getEtaList(@Query("stop_code") @StopCode String stopCode);
 
-//    @GET("nextTram/geteat.php?stop_code=16W")
-//    Call<Eta> getEtaList();
 }
