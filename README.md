@@ -12,7 +12,7 @@ Library using Retrofit2 to obtain the ETA of the Hong Kong Tramways.
             @Override
             public void onResponse(Call<Eta> call, Response<Eta> response) {
                 List<Metadata> etas = response.body().getMetadata(); //Obtain the ETA of Trams
-                ((TextView) findViewById(com.androidfung.hktramways.app.R.id.text_view)).setText(etas==null?"No Info":etas.toString());
+                Log.d(TAG, t.toString(etas==null?"No Info":etas.toString()));
             }
 
             @Override
