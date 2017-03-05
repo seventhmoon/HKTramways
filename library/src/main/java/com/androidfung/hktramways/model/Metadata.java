@@ -56,14 +56,14 @@ public class Metadata implements Comparable<Metadata>{
         return "Metadata{" +
                 "arrivalInMinute=" + arrivalInMinute +
                 ", arriveInSecond=" + arriveInSecond +
-//                ", arrived=" + arrived +
+                ", arrived=" + arrived +
                 ", stopCode='" + stopCode + '\'' +
-//                ", eta=" + eta +
+                ", eta=" + eta +
                 ", tramId='" + tramId + '\'' +
                 ", destCode='" + destCode + '\'' +
                 ", destDescHant='" + destDescHant + '\'' +
                 ", destDescEn='" + destDescEn + '\'' +
-//                ", lastTram=" + lastTram +
+                ", lastTram=" + lastTram +
                 ", sequence=" + sequence +
                 '}';
     }
@@ -84,13 +84,13 @@ public class Metadata implements Comparable<Metadata>{
         this.arriveInSecond = arriveInSecond;
     }
 
-//    public boolean isArrived() {
-//        return arrived;
-//    }
-//
-//    public void setArrived(boolean arrived) {
-//        this.arrived = arrived;
-//    }
+    public boolean isArrived() {
+        return arrived;
+    }
+
+    public void setArrived(boolean arrived) {
+        this.arrived = arrived;
+    }
 
     public String getStopCode() {
         return stopCode;
@@ -99,14 +99,14 @@ public class Metadata implements Comparable<Metadata>{
     public void setStopCode(String stopCode) {
         this.stopCode = stopCode;
     }
-//
-//    public Date getEta() {
-//        return eta;
-//    }
-//
-//    public void setEta(Date eta) {
-//        this.eta = eta;
-//    }
+
+    public String getEta() {
+        return eta;
+    }
+
+    public void setEta(String eta) {
+        this.eta = eta;
+    }
 
     public String getTramId() {
         return tramId;
@@ -148,13 +148,13 @@ public class Metadata implements Comparable<Metadata>{
         this.destDescEn = destDescEn;
     }
 
-//    public boolean isLastTram() {
-//        return lastTram;
-//    }
-//
-//    public void setLastTram(boolean lastTram) {
-//        this.lastTram = lastTram;
-//    }
+    public boolean isLastTram() {
+        return lastTram;
+    }
+
+    public void setLastTram(boolean lastTram) {
+        this.lastTram = lastTram;
+    }
 
     @Override
     public int compareTo(@NonNull Metadata eta) {

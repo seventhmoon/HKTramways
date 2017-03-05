@@ -41,21 +41,18 @@ public class BasicActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
             }
         });
+        sendRequest();
     }
 
     private void sendRequest(){
         OkHttpClient client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor()).build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
-                .client(client)
-                .addConverterFactory(SimpleXmlConverterFactory.create())
-                .build();
-        TramwaysService tramwaysService = retrofit.create(TramwaysService.class);
+
+        TramwaysService tramwaysService = ApiManager.getTramwaysService(client);
 
 //        try {
-        Call<Eta> call = tramwaysService.getEtaList("16W");
+        Call<Eta> call = tramwaysService.getEtaList("KTT");
         call.enqueue(new Callback<Eta>() {
             @Override
             public void onResponse(Call<Eta> call, Response<Eta> response) {
@@ -63,7 +60,7 @@ public class BasicActivity extends AppCompatActivity {
                 Log.d(TAG, response.toString());
                 List<Metadata> etas = response.body().getMetadata();
 
-                ((TextView) findViewById(com.androidfung.hktramways.app.R.id.text_view)).setText(etas==null?"NULL":etas.toString());
+                ((TextView) findViewById(com.androidfung.hktramways.app.R.id.text_view)).setText(etas==null?"No Info":etas.toString());
             }
 
             @Override

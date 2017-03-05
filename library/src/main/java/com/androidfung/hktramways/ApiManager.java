@@ -11,23 +11,27 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 public class ApiManager {
 
 
-    private final String API_BASE_URL = "https://www.hktramways.com/";
-//    private Retrofit mRetrofit;
-    private TramwaysService mTramwayService;
-
-    public ApiManager(){
+    private static final String API_BASE_URL = "https://www.hktramways.com/";
 
 
+
+    public static TramwaysService getTramwaysService(OkHttpClient okHttpClient){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
-                .client(new OkHttpClient())
+                .client(okHttpClient)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
-        mTramwayService = retrofit.create(TramwaysService.class);
+        return retrofit.create(TramwaysService.class);
+
     }
 
-    public void getEtas(String stopId){
-        
-        mTramwayService.getEtaList(stopId);
+
+
+    public static TramwaysService getTramwaysService(){
+
+        return getTramwaysService(new OkHttpClient());
+
     }
+
+
 }
